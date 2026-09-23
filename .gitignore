@@ -15,6 +15,7 @@ dist-ssr
 # Внутренние заметки и навыки — не публикуем в репозитории
 AGENTS.md
 skills/
+client-docs/
 
 # Editor directories and files
 .vscode/*
