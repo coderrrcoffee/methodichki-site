@@ -1,0 +1,333 @@
+/* ============================================================
+   СТИЛИ СТРАНИЦ И ИХ КРУПНЫХ БЛОКОВ
+   ============================================================ */
+
+/* ---------- Первый экран главной ---------- */
+
+.hero {
+  padding-block: clamp(2.5rem, 6vw, 5rem) clamp(2rem, 4vw, 3.5rem);
+}
+
+.hero__grid {
+  display: grid;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .hero__grid {
+    grid-template-columns: 1.05fr 0.95fr;
+  }
+}
+
+.hero__title {
+  max-width: 18ch;
+}
+
+.hero__text {
+  margin-top: 1.25rem;
+  font-size: var(--fs-lead);
+  line-height: 1.5;
+  color: var(--ink-soft);
+  max-width: 52ch;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+}
+
+.hero__photo {
+  max-width: 420px;
+  width: 100%;
+  justify-self: center;
+}
+
+.hero__note {
+  margin-top: 1.25rem;
+  font-size: var(--fs-small);
+  color: var(--muted);
+}
+
+/* ---------- Полоса фактов ---------- */
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border-block: 1px solid var(--border);
+}
+
+@media (min-width: 720px) {
+  .stats {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.stat {
+  padding: clamp(1.25rem, 3vw, 2rem);
+  background: var(--bg);
+}
+
+.stat__value {
+  font-family: var(--font-heading);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--warm);
+}
+
+.stat__label {
+  margin-top: 0.4rem;
+  font-size: var(--fs-small);
+  color: var(--muted);
+}
+
+/* ---------- Две колонки ---------- */
+
+.two-col {
+  display: grid;
+  gap: clamp(1.75rem, 4vw, 3rem);
+}
+
+@media (min-width: 820px) {
+  .two-col {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.column-title {
+  margin-bottom: 1rem;
+}
+
+/* ---------- Сетка направлений ---------- */
+
+.card-grid {
+  display: grid;
+  gap: clamp(1.25rem, 3vw, 2rem);
+}
+
+@media (min-width: 700px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1000px) {
+  .card-grid--three {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.subject {
+  padding-top: 1.25rem;
+  border-top: 2px solid var(--ink);
+}
+
+.subject__index {
+  font-family: var(--font-heading);
+  font-size: var(--fs-small);
+  font-weight: 600;
+  color: var(--warm);
+}
+
+.subject h3 {
+  margin: 0.35rem 0 0.5rem;
+}
+
+.subject p {
+  color: var(--ink-soft);
+}
+
+/* ---------- Шаги ---------- */
+
+.steps {
+  display: grid;
+  gap: clamp(1.5rem, 4vw, 2.5rem);
+  counter-reset: step;
+}
+
+@media (min-width: 700px) {
+  .steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1000px) {
+  .steps {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.step {
+  counter-increment: step;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.step::before {
+  content: counter(step, decimal-leading-zero);
+  display: block;
+  margin-bottom: 0.5rem;
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--warm);
+}
+
+.step h3 {
+  margin-bottom: 0.4rem;
+}
+
+.step p {
+  color: var(--ink-soft);
+  font-size: var(--fs-small);
+}
+
+/* ---------- Кейсы результатов ---------- */
+
+.case {
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border);
+}
+
+.case h3 {
+  margin-bottom: 0.4rem;
+}
+
+.case p {
+  color: var(--ink-soft);
+  font-size: var(--fs-small);
+}
+
+/* ---------- Сетки отзывов и цен ---------- */
+
+.reviews-grid {
+  display: grid;
+  gap: clamp(1rem, 3vw, 1.5rem);
+}
+
+@media (min-width: 640px) {
+  .reviews-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.price-grid {
+  display: grid;
+  gap: clamp(1rem, 3vw, 1.75rem);
+  align-items: stretch;
+}
+
+@media (min-width: 640px) {
+  .price-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1000px) {
+  .price-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.section-actions {
+  margin-top: clamp(1.75rem, 4vw, 2.5rem);
+}
+
+/* ---------- Шапка внутренней страницы ---------- */
+
+.page-header {
+  padding-block: clamp(2.5rem, 5vw, 4.5rem) clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.page-header__title {
+  max-width: 20ch;
+}
+
+.page-header__intro {
+  margin-top: 1.25rem;
+  font-size: var(--fs-lead);
+  line-height: 1.5;
+  color: var(--ink-soft);
+  max-width: 60ch;
+}
+
+/* ---------- Страница «О репетиторе» ---------- */
+
+.about-grid {
+  display: grid;
+  gap: clamp(2rem, 5vw, 3.5rem);
+  align-items: start;
+}
+
+@media (min-width: 900px) {
+  .about-grid {
+    grid-template-columns: 0.85fr 1.15fr;
+  }
+}
+
+.about-photo {
+  max-width: 400px;
+  width: 100%;
+}
+
+.about-caption {
+  padding-top: 0.5rem;
+  font-size: var(--fs-small);
+  color: var(--muted);
+}
+
+/* ---------- Контакты ---------- */
+
+.contact-grid {
+  display: grid;
+  gap: clamp(2rem, 5vw, 3.5rem);
+}
+
+@media (min-width: 820px) {
+  .contact-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.contact-methods {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--border);
+}
+
+.contact-method {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.contact-method__label {
+  color: var(--muted);
+  font-size: var(--fs-small);
+}
+
+.contact-method__value {
+  font-weight: 500;
+  text-align: right;
+}
+
+/* ---------- Страница «Не найдено» ---------- */
+
+.not-found {
+  padding-block: var(--space-section);
+  text-align: center;
+  max-width: 48ch;
+  margin-inline: auto;
+}
+
+.not-found .btn {
+  margin-top: 1.5rem;
+}

@@ -1,0 +1,236 @@
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  min-height: 72px;
+}
+
+.site-header__brand {
+  display: flex;
+  flex-direction: column;
+  margin-right: auto;
+  color: var(--ink);
+  line-height: 1.15;
+}
+
+.site-header__brand:hover {
+  text-decoration: none;
+}
+
+.site-header__name {
+  font-family: var(--font-heading);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.site-header__role {
+  font-size: 0.75rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.site-header__nav {
+  display: none;
+}
+
+.site-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.site-header__actions .btn {
+  display: none;
+  min-height: 40px;
+  padding: 0.3rem 0.95rem;
+  font-size: 0.875rem;
+}
+
+@media (min-width: 720px) {
+  .site-header__actions .btn {
+    display: inline-flex;
+  }
+}
+
+.menu-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.menu-toggle:hover {
+  border-color: var(--accent);
+}
+
+.menu-toggle__box {
+  position: relative;
+  width: 18px;
+  height: 12px;
+}
+
+.menu-toggle__bar {
+  position: absolute;
+  left: 0;
+  width: 18px;
+  height: 2px;
+  background: var(--ink);
+  transition:
+    top 0.2s ease,
+    transform 0.2s ease;
+}
+
+.menu-toggle__bar:nth-child(1) {
+  top: 0;
+}
+
+.menu-toggle__bar:nth-child(2) {
+  top: 10px;
+}
+
+.menu-toggle[aria-expanded='true'] .menu-toggle__bar:nth-child(1) {
+  top: 5px;
+  transform: rotate(45deg);
+}
+
+.menu-toggle[aria-expanded='true'] .menu-toggle__bar:nth-child(2) {
+  top: 5px;
+  transform: rotate(-45deg);
+}
+
+@media (min-width: 1120px) {
+  .site-header__nav {
+    display: block;
+  }
+
+  .menu-toggle {
+    display: none;
+  }
+
+  .mobile-menu,
+  .mobile-menu.is-open {
+    display: none;
+  }
+}
+
+/* ---------- Навигация ---------- */
+
+.nav__list {
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav__link {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  line-height: 1.4;
+  white-space: nowrap;
+  padding-block: 0.35rem;
+  border-bottom: 2px solid transparent;
+}
+
+.nav__link:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.nav__link.is-active {
+  color: var(--ink);
+  border-bottom-color: var(--accent);
+}
+
+/* ---------- Мобильное меню ---------- */
+
+.mobile-menu {
+  display: grid;
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  overflow: hidden;
+  max-height: calc(100svh - 72px);
+  transition:
+    grid-template-rows 0.3s ease,
+    visibility 0.3s ease;
+}
+
+.mobile-menu.is-open {
+  grid-template-rows: 1fr;
+  visibility: visible;
+}
+
+.mobile-menu__inner {
+  min-height: 0;
+  overflow-y: auto;
+  border-top: 1px solid var(--border);
+}
+
+/* Лёгкое проявление содержимого вслед за раскрытием */
+.mobile-menu__inner > * {
+  opacity: 0;
+  transform: translateY(-4px);
+  transition:
+    opacity 0.25s ease 0.06s,
+    transform 0.25s ease 0.06s;
+}
+
+.mobile-menu.is-open .mobile-menu__inner > * {
+  opacity: 1;
+  transform: none;
+}
+
+@media (min-width: 1120px) {
+  .mobile-menu,
+  .mobile-menu.is-open {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-menu,
+  .mobile-menu__inner > * {
+    transition: none;
+  }
+}
+
+.mobile-menu .nav__list {
+  flex-direction: column;
+  gap: 0;
+  padding: 0.25rem var(--gutter) 0;
+}
+
+.mobile-menu .nav__link {
+  display: block;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  font-size: 1.0625rem;
+}
+
+.mobile-menu .nav__link.is-active {
+  color: var(--accent);
+  border-bottom-color: var(--border);
+}
+
+.mobile-menu__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.25rem var(--gutter) 1.75rem;
+}
