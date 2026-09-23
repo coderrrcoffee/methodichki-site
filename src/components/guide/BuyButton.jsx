@@ -1,9 +1,12 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { onPaymentStatus, preloadProdamus, startPayment } from '../../lib/prodamus.js'
 
 /**
  * Кнопка «Купить» с окном оплаты Prodamus.
  * Показывает состояние: открываю → оплата → результат.
+ *
+ * Важно: статусы оплаты приходят в браузер общим событием, поэтому
+ * каждая кнопка реагирует только на ту оплату, которую открыла она сама.
  */
 export default function BuyButton({
   sum,
@@ -15,6 +18,7 @@ export default function BuyButton({
 }) {
   const [state, setState] = useState('idle')
   const [message, setMessage] = useState('')
+  const isActive = useRef(false)
 
   // Подгружаем виджет заранее – как только кнопка появилась на экране.
   // Так по клику оплата открывается быстрее.
@@ -24,33 +28,35 @@ export default function BuyButton({
 
   useEffect(() => {
     return onPaymentStatus((status) => {
+      if (!isActive.current) return
+
       if (status === 'waiting') {
-        setState('opened')
         setMessage('Обрабатываю оплату…')
       } else if (status === 'success') {
+        isActive.current = false
         setState('success')
         setMessage('Оплата прошла. Спасибо! Материалы придут на почту.')
       } else if (status === 'error') {
+        isActive.current = false
         setState('error')
         setMessage('Оплата не прошла. Попробуйте ещё раз.')
       } else if (status === 'close') {
-        setState((current) => (current === 'success' ? current : 'idle'))
-        setMessage((current) =>
-          current === 'Оплата прошла. Спасибо! Материалы придут на почту.'
-            ? current
-            : '',
-        )
+        isActive.current = false
+        setState('idle')
+        setMessage('')
       }
     })
   }, [])
 
   async function handleClick() {
+    isActive.current = true
     setState('loading')
     setMessage('Открываю окно оплаты…')
     try {
       await startPayment({ sum, title, id })
       setState('opened')
     } catch (error) {
+      isActive.current = false
       setState('error')
       setMessage(error?.message || 'Не удалось открыть окно оплаты')
     }

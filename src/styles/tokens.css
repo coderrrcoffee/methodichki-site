@@ -4,44 +4,45 @@
    ============================================================ */
 
 :root {
-  /* Цвета */
-  --bg: #faf7f1; /* основной фон – тёплая бумага */
-  --bg-alt: #f1ebe0; /* фон чередующихся секций */
-  --ink: #211e19; /* основной текст */
-  --ink-soft: #4a443b; /* текст второго уровня */
-  --muted: #6b6459; /* подписи, пояснения */
-  --accent: #0f4f4c; /* акцент: ссылки, кнопки, иконки */
-  --accent-strong: #0a3b39; /* акцент при наведении */
-  --accent-soft: #ddeae7; /* мягкая заливка акцента */
-  --warm: #c96a3a; /* тёплый акцент для крупных деталей */
-  --border: #e3dcce; /* тонкие линии */
-  --success: #3f7a5c;
+  /* Цвета – прохладная нейтральная гамма + графит */
+  --bg: #f4f5f7; /* основной фон – светлый прохладный */
+  --bg-alt: #e9ebef; /* фон чередующихся секций */
+  --ink: #14161a; /* основной текст */
+  --ink-soft: #3b3f46; /* текст второго уровня */
+  --muted: #6a6f77; /* подписи, пояснения */
+  --accent: #1f2b3c; /* акцент: графитово-синий */
+  --accent-strong: #131b27; /* акцент при наведении */
+  --accent-soft: #dfe4ea; /* мягкая заливка акцента */
+  --warm: #9a6a3a; /* латунный акцент для мелких деталей */
+  --border: #d9dde3; /* тонкие линии */
+  --success: #3f6b52;
 
   /* Шрифты */
-  --font-heading: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --font-heading: 'Onest', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --font-body:
     'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial,
     sans-serif;
+  --font-brand: 'Unbounded', var(--font-heading);
 
   /* Размеры текста */
   --fs-body: clamp(1rem, 0.97rem + 0.15vw, 1.0625rem);
   --fs-lead: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
-  --fs-h1: clamp(2rem, 1.4rem + 3.2vw, 3.5rem);
-  --fs-h2: clamp(1.6rem, 1.25rem + 1.6vw, 2.375rem);
-  --fs-h3: clamp(1.2rem, 1.1rem + 0.5vw, 1.4rem);
+  --fs-h1: clamp(2rem, 1.35rem + 3.4vw, 3.75rem);
+  --fs-h2: clamp(1.6rem, 1.25rem + 1.6vw, 2.5rem);
+  --fs-h3: clamp(1.2rem, 1.1rem + 0.5vw, 1.45rem);
   --fs-small: 0.9375rem;
 
   /* Ширины и отступы */
-  --maxw: 1120px;
+  --maxw: 1160px;
   --maxw-narrow: 720px;
   --gutter: clamp(20px, 5vw, 40px);
   --space-section: clamp(3.5rem, 8vw, 7rem);
-  --radius: 4px;
-  --radius-lg: 8px;
+  --radius: 6px;
+  --radius-lg: 12px;
 
   /* Тень – только для интерактивных элементов */
-  --shadow-sm: 0 1px 2px rgba(33, 30, 25, 0.06);
-  --shadow-md: 0 12px 28px -14px rgba(33, 30, 25, 0.28);
+  --shadow-sm: 0 1px 2px rgba(20, 22, 26, 0.05);
+  --shadow-md: 0 14px 34px -18px rgba(20, 22, 26, 0.32);
 
   color-scheme: light;
 }

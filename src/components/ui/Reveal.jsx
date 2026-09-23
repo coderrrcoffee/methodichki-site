@@ -27,7 +27,10 @@ export default function Reveal({
           observer.disconnect()
         }
       },
-      { rootMargin: '0px 0px -8% 0px', threshold: 0.12 },
+      // threshold: 0 – срабатывает, как только элемент начал появляться.
+      // Важно для высоких блоков (например, длинного списка карточек
+      // на телефоне): при большом пороге они могли не проявиться вовсе.
+      { rootMargin: '0px 0px -8% 0px', threshold: 0 },
     )
 
     observer.observe(node)

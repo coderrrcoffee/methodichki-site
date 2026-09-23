@@ -9,9 +9,7 @@ export default function Footer() {
       <div className="container site-footer__inner">
         <div className="site-footer__brand">
           <p className="site-footer__name">{shop.name}</p>
-          <p className="site-footer__role">
-            {shop.author} · {shop.city}
-          </p>
+          <p className="site-footer__role">{shop.authorRole}</p>
         </div>
 
         <nav className="site-footer__nav" aria-label="Навигация в подвале">

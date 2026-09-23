@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import Header from './Header.jsx'
 import Footer from './Footer.jsx'
+import { announcement } from '../../content/site.js'
 
 // При переходе на новую страницу возвращаем прокрутку наверх
 function ScrollToTop() {
@@ -21,6 +22,7 @@ export default function Layout() {
       <a className="skip-link" href="#main">
         К содержанию
       </a>
+      <p className="announcement">{announcement}</p>
       <Header />
       <main id="main">
         <Outlet />

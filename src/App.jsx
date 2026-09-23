@@ -3,6 +3,7 @@ import Layout from './components/layout/Layout.jsx'
 import HomePage from './pages/HomePage.jsx'
 import CatalogPage from './pages/CatalogPage.jsx'
 import HowToBuyPage from './pages/HowToBuyPage.jsx'
+import AboutPage from './pages/AboutPage.jsx'
 import ReviewsPage from './pages/ReviewsPage.jsx'
 import FaqPage from './pages/FaqPage.jsx'
 import ContactPage from './pages/ContactPage.jsx'
@@ -15,6 +16,7 @@ export default function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/catalog" element={<CatalogPage />} />
         <Route path="/how-to-buy" element={<HowToBuyPage />} />
+        <Route path="/about" element={<AboutPage />} />
         <Route path="/reviews" element={<ReviewsPage />} />
         <Route path="/faq" element={<FaqPage />} />
         <Route path="/contact" element={<ContactPage />} />

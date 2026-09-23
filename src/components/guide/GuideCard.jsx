@@ -19,6 +19,7 @@ export default function GuideCard({ guide, variant = 'cover', className = '' }) 
           subtitle={subtitle}
           category={category}
           className="guide-card__cover"
+          decorative
         />
       )}
 

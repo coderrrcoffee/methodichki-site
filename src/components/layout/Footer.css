@@ -18,8 +18,8 @@
 }
 
 .site-footer__name {
-  font-family: var(--font-heading);
-  font-size: 1.125rem;
+  font-family: var(--font-brand);
+  font-size: 1rem;
   font-weight: 600;
   color: var(--ink);
 }
