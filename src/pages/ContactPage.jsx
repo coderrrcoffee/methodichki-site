@@ -3,9 +3,10 @@ import CtaBand from '../components/ui/CtaBand.jsx'
 import { intros, contacts } from '../content/site.js'
 
 export default function ContactPage() {
+  // Почта появится здесь автоматически, как только её добавят в контакты
   const methods = [
     { title: 'Telegram', ...contacts.telegram },
-    { title: 'E-mail', ...contacts.email },
+    ...(contacts.email ? [{ title: 'E-mail', ...contacts.email }] : []),
   ]
 
   return (

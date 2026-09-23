@@ -14,11 +14,12 @@ export const shop = {
   authorRole: 'Учитель русского языка, автор методичек',
 }
 
-// ---- Контакты (используются в шапке, подвале и на странице «Контакты») ----
-// TODO: заменить на реальные контакты
+// ---- Контакты (используются в подвале и на странице «Контакты») ----
+// TODO: подставить реальные контакты клиентки.
+// Пока стоят заглушки: ссылка ведёт на официальный сайт Telegram,
+// а не на чей-то профиль. Почту добавим, когда будет реальный адрес.
 export const contacts = {
-  telegram: { label: 'Telegram', href: 'https://t.me/methodichki' },
-  email: { label: 'hello@methodichki.ru', href: 'mailto:hello@methodichki.ru' },
+  telegram: { label: 'Telegram', href: 'https://telegram.org' },
   hours: 'Отвечаю в течение дня, обычно – в течение пары часов',
 }
 
