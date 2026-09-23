@@ -30,7 +30,6 @@ export default function Footer() {
           >
             {contacts.telegram.label}
           </a>
-          <a href={contacts.email.href}>{contacts.email.label}</a>
         </div>
       </div>
 
