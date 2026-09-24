@@ -21,6 +21,8 @@ let loader = null
 
 /**
  * Загружает скрипт виджета один раз и возвращает функцию payformInit.
+ * Если загрузка сорвалась или подвисла – сбрасываем состояние,
+ * чтобы следующая попытка началась заново, а не упиралась в старую ошибку.
  */
 export function loadProdamus() {
   if (typeof window === 'undefined') {
@@ -42,15 +44,35 @@ export function loadProdamus() {
     const script = document.createElement('script')
     script.src = INIT_JS
     script.async = true
+
+    // Страховка: если скрипт не ответил за 12 секунд, не оставляем
+    // пользователя ждать бесконечно
+    const failsafe = setTimeout(() => {
+      script.remove()
+      reject(new Error('Виджет оплаты долго не отвечает. Попробуйте ещё раз.'))
+    }, 12000)
+
     script.onload = () => {
+      clearTimeout(failsafe)
       if (typeof window.payformInit === 'function') {
         resolve(window.payformInit)
       } else {
         reject(new Error('Скрипт оплаты загрузился, но payformInit недоступен'))
       }
     }
-    script.onerror = () => reject(new Error('Не удалось загрузить виджет оплаты'))
+
+    script.onerror = () => {
+      clearTimeout(failsafe)
+      script.remove()
+      reject(new Error('Не удалось загрузить виджет оплаты'))
+    }
+
     document.head.appendChild(script)
+  })
+
+  // Сбрасываем загрузчик при ошибке, чтобы можно было повторить попытку
+  loader.catch(() => {
+    loader = null
   })
 
   return loader
