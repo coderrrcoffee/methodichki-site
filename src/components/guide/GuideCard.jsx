@@ -10,6 +10,9 @@ import { categoryLabels, formatPrice } from '../../lib/format.js'
  */
 export default function GuideCard({ guide, variant = 'cover', className = '' }) {
   const { title, subtitle, text, price, category, level, pages, badge } = guide
+  const categoryLabel = categoryLabels[category] ?? ''
+  // Отметка не должна повторять категорию – иначе на карточке дубль
+  const showBadge = Boolean(badge) && badge !== categoryLabel
 
   return (
     <article className={`guide-card guide-card--${variant} ${className}`.trim()}>
@@ -25,8 +28,8 @@ export default function GuideCard({ guide, variant = 'cover', className = '' }) 
 
       <div className="guide-card__body">
         <div className="guide-card__meta">
-          {badge && <span className="guide-card__badge">{badge}</span>}
-          <span className="guide-card__cat">{categoryLabels[category] ?? ''}</span>
+          {showBadge && <span className="guide-card__badge">{badge}</span>}
+          <span className="guide-card__cat">{categoryLabel}</span>
         </div>
 
         <h3 className="guide-card__title">{title}</h3>

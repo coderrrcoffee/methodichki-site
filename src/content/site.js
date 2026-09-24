@@ -274,7 +274,6 @@ export const guides = [
     level: '8 класс',
     format: 'PDF',
     pages: 110,
-    badge: 'Для учителя',
   },
 ]
 
