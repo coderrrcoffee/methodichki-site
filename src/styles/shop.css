@@ -552,18 +552,6 @@
 
 /* ---------- Мелкие детали ---------- */
 
-/* ---------- Верхняя полоска ---------- */
-
-.announcement {
-  margin: 0;
-  padding: 0.5rem var(--gutter);
-  background: var(--accent);
-  color: #fff;
-  text-align: center;
-  font-size: 0.8125rem;
-  line-height: 1.4;
-}
-
 /* ---------- Первый экран: полка с методичками ---------- */
 
 .hero__shelf-wrap {
