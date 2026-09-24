@@ -11,8 +11,11 @@
 // демонстрационная страница Prodamus – деньги не списываются.
 export const PRODAMUS_DOMAIN = 'demo.payform.ru'
 
-// Тестовый режим: 1 – оплата идёт «понарошку», 0 – реальная оплата.
-export const PRODAMUS_DEMO = 1
+// Тестовый режим (параметр demo_mode).
+// Сейчас 0: демонстрационная страница и так не списывает деньги,
+// а лишний параметр может мешать. Для тестов на боевой странице
+// поставьте 1 – тогда оплата пойдёт «понарошку».
+export const PRODAMUS_DEMO = 0
 
 const INIT_JS = 'https://widget.prodamus.ru/src/init.js'
 const INIT_CSS = 'https://widget.prodamus.ru/src/init.css'
@@ -92,30 +95,25 @@ export function preloadProdamus() {
  * Открывает окно оплаты.
  * @param {object} order
  * @param {number} order.sum   – сумма в рублях
- * @param {string} order.title – название методички (попадёт в чек)
+ * @param {string} order.title – название материала (для подписи заказа)
  * @param {string} [order.id]  – номер заказа в вашей системе
  */
 export async function startPayment({ sum, title, id }) {
   const payformInit = await loadProdamus()
 
   const params = {
+    order_sum: Number(sum),
     currency: 'rub',
     version: 'beauty', // современное «Единое окно»
-    // Название и цена позиции – из этого формируется чек
-    products: [
-      {
-        name: title,
-        price: Number(sum),
-        quantity: 1,
-        type: 'goods',
-      },
-    ],
   }
 
   if (PRODAMUS_DEMO) params.demo_mode = PRODAMUS_DEMO
   if (id) params.order_id = String(id)
+  if (title) params.customer_extra = title
 
-  payformInit(PRODAMUS_DOMAIN, params)
+  // Ждём результат, чтобы при ошибке показать понятное сообщение,
+  // а не молчать
+  await payformInit(PRODAMUS_DOMAIN, params)
   return params
 }
 
